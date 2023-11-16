@@ -11,12 +11,13 @@
         <label for="user">Auteur :</label>
         <select name="user" id="user">
         <option value="" selected>Sélectionnez un auteur</option>
-            <?php foreach ($users as $user) : ?>
-                <?php if ($user['is_admin'] != 1) : ?>
-                    <option value="<?= $user['user_id'] ?>">
-                        <?= $user['name'] ?>
-                    </option>
-                <?php endif; ?>
+            <?php
+            $requete = 'SELECT user_id, name FROM user WHERE is_admin != 1';
+            $filteredUsers = $connexion->query($requete)->fetchAll();
+            foreach ($filteredUsers as $user) : ?>
+                <option value="<?= $user['user_id'] ?>">
+                    <?= $user['name'] ?>
+                </option>
             <?php endforeach; ?>
         </select>
     <?php else : ?>
