@@ -15,4 +15,5 @@ $routes = [
     '/create-user' => 'controllers/user/create-user.php',
     '/register' => 'controllers/user/register.php',
     '/login' => 'controllers/user/login.php',
+    '/connected' => 'controllers/connected.php',
 ];

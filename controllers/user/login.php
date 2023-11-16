@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login_submit'])) {
             $is_admin = checkIfAdmin($user['user_id'], $connexion);
             $_SESSION['is_admin'] = $is_admin;
 
-            header("Location: /notes");
+            header("Location: /connected");
             exit();
         } else {
             $errors[] = "Mot de passe incorrect";

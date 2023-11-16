@@ -7,6 +7,7 @@ if (!isset($_SESSION['user_name'])) {
     header("Location: /login");
     exit();
 }
+
 require 'models/Database.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

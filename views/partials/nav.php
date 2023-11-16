@@ -6,6 +6,7 @@ ini_set('display_errors', 0); ?>
         <?php
         if (isset($_SESSION['user_name'])) {
             echo '<li>Bonjour, ' . $_SESSION['user_name'] . '</li>';
+            echo '<li><a href="/connected">Accueil</a></li>';
 
             if ($_SESSION['is_admin']) {
                 echo '<li><a href="/admin">Admin</a></li>';
