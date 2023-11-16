@@ -7,6 +7,7 @@ if (!isset($_SESSION['user_name'])) {
     header("Location: /login");
     exit();
 }
+
 require 'models/Database.php';
 
 $requete = "SELECT user_id, name FROM user";
@@ -80,8 +81,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $noteNew->bindParam(':id', $id, PDO::PARAM_INT);
 
         $noteNew->execute();
-        header('Location: /notes');
-        exit();
+
+
+        if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
+            header("Location: /admin");
+            exit();
+        } else {
+            header('Location: /notes');
+            exit();
+        }
     }
 }
 

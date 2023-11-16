@@ -90,8 +90,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     
         if (empty($errors) && $lastInsertId) {
-            header('Location: /notes');
-            exit();
+            // Ajouter une condition pour rediriger l'admin vers /admin
+            if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
+                header("Location: /admin");
+                exit();
+            } else {
+                header('Location: /notes');
+                exit();
+            }
         }
     }
 }

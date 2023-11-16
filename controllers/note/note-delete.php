@@ -17,8 +17,13 @@ if (isset($id)) {
     $deleteNote->bindParam(':id', $id);
 
     if ($deleteNote->execute()) {
-        header('Location: /notes');
-        exit;
+        if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
+            header('Location: /admin');
+            exit();
+        } else {
+            header('Location: /notes');
+            exit();
+        }
     } else {
         echo "Error.";
     }

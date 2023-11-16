@@ -8,6 +8,13 @@
 <?= $imageTag ?> 
 <p><a href="/note-update?id=<?= $note['id'] ?>" class="btn">Modifier cette note</a></p>
 <p><a href="/note-delete?id=<?= $note['id'] ?>" onclick="return confirm('Etes vous certain de vouloir supprimer cette note ?')">Supprimer cette note</a></p>
-<p><a href="/notes">Retour à la liste des notes</a></p>
 
-<?php require 'views/partials/footer.php'; ?>
+<?php
+if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
+    echo '<p><a href="/admin">Retour à la liste des notes</a></p>';
+} else {
+    echo '<p><a href="/notes">Retour à la liste des notes</a></p>';
+}
+
+require 'views/partials/footer.php';
+?>

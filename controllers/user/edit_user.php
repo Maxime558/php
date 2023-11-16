@@ -8,6 +8,7 @@ if (!isset($_SESSION['user_name'])) {
     exit();
 }
 
+
 require 'models/Database.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -34,7 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $connexion->prepare($update_query);
     $stmt->execute($parameters);
 
-    header("Location: users");
+    if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
+        header("Location: /users");
+    } else {
+        header("Location: /");
+    }
     exit;
 }
 
@@ -47,9 +52,8 @@ if (isset($_GET['user_id'])) {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$user) {
-        header("Location: users");
+        header("Location: /");
         exit;
     }
 }
-
 require 'views/user/edit_user.view.php';

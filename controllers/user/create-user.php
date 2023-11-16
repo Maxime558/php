@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt->bindParam(':password', $hashedPassword);
 
         if ($stmt->execute()) {
-            header("Location: users");
+            header("Location: /users");
             exit;
         } else {
             echo "Erreur lors de l'insertion de l'utilisateur.";
