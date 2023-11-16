@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login_submit'])) {
         if (password_verify($password, $user['password'])) {
             session_start();
             $_SESSION['user_name'] = $user['name'];
-
+            $_SESSION['user_id'] = $user['user_id'];
             $is_admin = checkIfAdmin($user['user_id'], $connexion);
             $_SESSION['is_admin'] = $is_admin;
 

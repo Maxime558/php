@@ -6,15 +6,23 @@
     <label for="title">Titre</label>
     <input type="text" name="title" id="title" value="<?php if (isset($_POST['title'])) echo htmlspecialchars($_POST['title']); ?>">
     <textarea name="content" id="content" cols="30" rows="10"><?php if (isset($_POST['content'])) echo htmlspecialchars($_POST['content']); ?></textarea>
-    <label for="user">Auteur :</label>
-    <select name="user" id="user">
+    
+    <?php if ($_SESSION['is_admin'] == 1) : ?>
+        <label for="user">Auteur :</label>
+        <select name="user" id="user">
         <option value="" selected>Sélectionnez un auteur</option>
-        <?php foreach ($users as $user) : ?>
-            <option value="<?= $user['user_id'] ?>">
-                <?= $user['name'] ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
+            <?php foreach ($users as $user) : ?>
+                <?php if ($user['is_admin'] != 1) : ?>
+                    <option value="<?= $user['user_id'] ?>">
+                        <?= $user['name'] ?>
+                    </option>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </select>
+    <?php else : ?>
+        <input type="hidden" name="user" value="<?= $_SESSION['user_id'] ?>">
+    <?php endif; ?>
+    
     <label for="image">Image :</label>
     <input type="file" name="fileToUpload" id="fileToUpload">
     <input id="submit" type="submit" value="Confirmer">

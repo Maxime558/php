@@ -10,6 +10,13 @@ if (!isset($_SESSION['user_name'])) {
 
 require 'models/Database.php';
 
+if (!isset($_SESSION['user_id'])) {
+    header("Location: /error");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+
 $requete = 'SELECT user_id, name FROM user';
 $users = $connexion->query($requete)->fetchAll();
 
@@ -45,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $title = trim(filter_var($_POST['title'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
     $content = trim(filter_var($_POST['content'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
-    $user = trim(filter_var($_POST['user'], FILTER_SANITIZE_NUMBER_INT));
 
     if (strlen($title) === 0) {
         $errors[] = 'Titre vide !!!';
@@ -60,11 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (strlen($content) >= 1000) {
-        $errors[] = 'Contenu supérieur à 1000 caratéres !!!';
-    }
-
-    if (empty($_POST['user']) || strlen($_POST['user'] === 0)) {
-        $errors[] = 'Aucun auteur séléctionné !!!';
+        $errors[] = 'Contenu supérieur à 1000 caractères !!!';
     }
 
     if (empty($errors)) {
@@ -74,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
         $noteNew->bindParam(':title', $title, PDO::PARAM_STR);
         $noteNew->bindParam(':content', $content, PDO::PARAM_STR);
-        $noteNew->bindParam(':user_id', $user, PDO::PARAM_INT);
+        $noteNew->bindParam(':user_id', $user_id, PDO::PARAM_INT);
         $noteNew->bindParam(':file_name', $fileName, PDO::PARAM_STR);
     
         try {
