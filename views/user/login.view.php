@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Login</title>
+    <title>Se connecter</title>
     <link rel="stylesheet" href="public/assets/css/register.css">
+    <link rel="icon" type="image/x-icon" href="public/assets/images/favicon.ico">
 </head>
 
 <body>

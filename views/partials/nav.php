@@ -20,8 +20,8 @@ ini_set('display_errors', 0); ?>
             echo '<li><a href="../controllers/user/disconnect.php">Se déconnecter</a></li>';
         } else {
             echo '<li><a href="/">Index</a></li>';
-            echo `<li><a href="/register">S'inscrire</a></li>`;
-            echo '<li><a href="/login">Login</a></li>';
+            echo '<li><a href="/register">S\'inscrire</a></li>';
+            echo '<li><a href="/login">Se connecter</a></li>';
         }
         ?>
     </ul>

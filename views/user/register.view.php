@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sign Up</title>
+    <title>S'inscrire</title>
     <link rel="stylesheet" href="public/assets/css/register.css">
+    <link rel="icon" type="image/x-icon" href="public/assets/images/favicon.ico">
 </head>
-
 <body>
     <div id="login-box">
         <div class="left">
