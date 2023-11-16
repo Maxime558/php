@@ -14,7 +14,9 @@
                 <input type="text" name="email" placeholder="E-mail" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <input type="submit" name="login_submit" value="Login">
-            </form>
+            </form><br>
+            <a href="/register">Crée un compte</a><hr>
+            <a href="/">Retour a l'accueil</a>
         </div>
     </div>
     <?php if (!empty($errors)) : ?>

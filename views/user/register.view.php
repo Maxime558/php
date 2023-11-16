@@ -14,7 +14,9 @@
                 <input type="text" name="email" placeholder="E-mail" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <input type="submit" name="signup_submit" value="Sign me up">
-            </form>
+            </form><br>
+            <a href="login">Se connecter</a><hr>
+            <a href="/">Retour a l'accueil</a>
         </div>
     </div>
 </body>
