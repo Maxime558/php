@@ -9,8 +9,8 @@ ini_set('display_errors', 0); ?>
             echo '<li><a href="/connected">Accueil</a></li>';
 
             if (isset($_SESSION['is_admin'])) {
-                echo '<li><a href="/admin">Admin</a></li>';
-                echo '<li><a href="/users">User</a></li>';
+                echo '<li><a href="/admin">Toutes les notes</a></li>';
+                echo '<li><a href="/users">Tout les utilisateurs</a></li>';
             } else {
                 echo '<li><a href="/notes">Notes</a></li>';
                 echo '<li><a href="/note-new">Crée une note</a></li>';
