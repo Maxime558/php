@@ -2,6 +2,12 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+if (!isset($_SESSION['user_name'])) {
+    header("Location: /login");
+    exit();
+}
+
 require 'models/Database.php';
 
 $id = $_GET['id'];

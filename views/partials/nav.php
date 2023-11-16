@@ -15,7 +15,7 @@ ini_set('display_errors', 0); ?>
                 echo '<li><a href="/users">User</a></li>';
             }
             
-            echo '<li><a href="/">Se déconnecter</a></li>';
+            echo '<li><a href="../controllers/user/disconect.php">Se déconnecter</a></li>';
         } else {
             echo '<li><a href="/">Index</a></li>';
             echo '<li><a href="/register">Register</a></li>';
