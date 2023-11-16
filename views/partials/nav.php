@@ -8,7 +8,7 @@ ini_set('display_errors', 0); ?>
             echo '<li>Bonjour, ' . $_SESSION['user_name'] . '</li>';
             echo '<li><a href="/connected">Accueil</a></li>';
 
-            if ($_SESSION['is_admin']) {
+            if (isset($_SESSION['is_admin'])) {
                 echo '<li><a href="/admin">Admin</a></li>';
                 echo '<li><a href="/users">User</a></li>';
             } else {
