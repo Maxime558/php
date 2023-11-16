@@ -28,4 +28,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-include 'views/user/users.view.php';
+include 'views/admin/users.view.php';

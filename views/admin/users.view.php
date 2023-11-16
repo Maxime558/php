@@ -6,25 +6,24 @@
 <table>
     <tr>
         <th>Nom</th>
+        <th>ID</th>
         <th>Email</th>
         <th>Action</th>
     </tr>
     <?php foreach ($users as $user) : ?>
         <tr>
             <td><?php echo $user['name']; ?></td>
+            <td><?php echo $user['user_id']; ?></td>
             <td><?php echo $user['email']; ?></td>
             <td>
-                <button> <a href="edit-user?user_id=<?php echo $user['user_id']; ?>">
-                        Modifier
-                    </a> </button>
+                <button> <a href="edit-user?user_id=<?php echo $user['user_id']; ?>">Modifier</a> </button>
                 <form method="POST">
                     <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
                     <button type="submit">Supprimer</button>
                 </form>
-            </td>
+            </td> 
         </tr>
     <?php endforeach; ?>
 </table>
-
 
 <?php require 'views/partials/footer.php' ?>
