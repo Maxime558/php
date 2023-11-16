@@ -5,12 +5,12 @@
   <?php foreach ($notes as $note) : ?>
     <li class="note">
       <a href="/note?id=<?= $note['id'] ?>"> <?= $note['title'] ?> </a>
-      <a id="croix" href="/note-delete?id=<?= $note['id'] ?>" onclick="return confirm('Etes vous certain de vouloir supprimer cette note ?')"> X </a>
+      <button id="croix" href="/note-delete?id=<?= $note['id'] ?>" onclick="return confirm('Etes vous certain de vouloir supprimer cette note ?')"> X </button>
     </li>
   <?php endforeach; ?>
   <ul>
       <li id="new-note2">
-        <a id="new-note" href="/note-new">Crée une nouvelle note</a>
+        <button><a id="new-note" href="/note-new">Crée une nouvelle note</a></button>
       </li>
     </ul>
 </ul>

@@ -76,9 +76,7 @@ textarea {
 #croix {
   background-color: red;
   text-decoration: none;
-  color: black;
   padding: 5px;
-  border: solid 1px black;
 }
 
 ul {
@@ -98,12 +96,9 @@ ul {
 
 #new-note2 {
   border-radius: 15px;
-  background-color:  #384a61;
   font-size: 2rem;
-  width: 28%;
   margin-left: 10px;
   padding: 0px 8px;
-  text-align: center;
 }
 
 table {

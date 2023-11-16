@@ -22,4 +22,10 @@ $notes->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 $notes->execute();
 $notes = $notes->fetchAll();
 
-require 'views/note/notes.view.php';
+if (count($notes) > 0) {
+    require 'views/note/notes.view.php';
+} else {
+    $errorMessage = "Aucune note n'a été trouvée.";
+    require 'views/error.view.php'; 
+}
+?>
