@@ -15,7 +15,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$user_id = $_SESSION['user_id'];
+$logged_in_user_id = $_SESSION['user_id'];
 
 $requete = 'SELECT user_id, name FROM user';
 $users = $connexion->query($requete)->fetchAll();
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
-
+    $selected_author_id = $_POST['user_id'];
     $title = trim(filter_var($_POST['title'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
     $content = trim(filter_var($_POST['content'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 
@@ -69,14 +69,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'Contenu supérieur à 1000 caractères !!!';
     }
 
+    if (isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['error'] === UPLOAD_ERR_OK) {
+        $fileName = basename($_FILES["fileToUpload"]["name"]);
+    } else {
+        $fileName = NULL;
+    }
+
     if (empty($errors)) {
         $fileName = basename($_FILES["fileToUpload"]["name"]);
-
+    
         $noteNew = $connexion->prepare('INSERT INTO note (title, content, user_id, file_name) VALUES (:title, :content, :user_id, :file_name)');
     
         $noteNew->bindParam(':title', $title, PDO::PARAM_STR);
         $noteNew->bindParam(':content', $content, PDO::PARAM_STR);
-        $noteNew->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $noteNew->bindParam(':user_id', $selected_author_id, PDO::PARAM_INT);
         $noteNew->bindParam(':file_name', $fileName, PDO::PARAM_STR);
     
         try {
@@ -90,7 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     
         if (empty($errors) && $lastInsertId) {
-            // Ajouter une condition pour rediriger l'admin vers /admin
             if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
                 header("Location: /admin");
                 exit();
@@ -100,6 +105,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
-}
-
-include 'views/note/note-new.view.php';
+}   
+    include 'views/note/note-new.view.php';
